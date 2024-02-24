@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "Hash": "rLSAAIG2cdmDomxnHpDOuxD6fY67MZGwnRJzjjVjIb4=",
+  "Source": "APP",
+  "BasePath": "_content/APP",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "APP\\wwwroot",
+      "Source": "APP",
+      "ContentRoot": "C:\\Users\\Polaznik\\Documents\\GitHub\\ELAAPP\\APP\\wwwroot\\",
+      "BasePath": "_content/APP",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\Polaznik\\Documents\\GitHub\\ELAAPP\\APP\\wwwroot\\index.html",
+      "SourceId": "APP",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Polaznik\\Documents\\GitHub\\ELAAPP\\APP\\wwwroot\\",
+      "BasePath": "_content/APP",
+      "RelativePath": "index.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\index.html"
+    }
+  ]
+}
