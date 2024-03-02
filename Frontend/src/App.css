@@ -1,0 +1,14 @@
+.desno{
+    text-align: right;
+}
+.sredina{
+    text-align: center;
+}
+.gumb{
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.btn-success {
+    background-color: #a9dab8;
+}
