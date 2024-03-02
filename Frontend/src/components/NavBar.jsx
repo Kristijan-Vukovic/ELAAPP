@@ -34,7 +34,7 @@ function NavBar() {
                 Predavači
               </NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">
-                Polaznici
+                Zrakoplovi
               </NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.4">
