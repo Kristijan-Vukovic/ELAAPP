@@ -31,10 +31,10 @@ function NavBar() {
                 Piloti
               </NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
-                Predavači
+                Zrakoplovi
               </NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">
-                Zrakoplovi
+                Ovdje treći entitet
               </NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.4">
