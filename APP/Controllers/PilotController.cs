@@ -106,15 +106,15 @@ namespace APP.Controllers
         /// <remarks>
         /// Primjer upita:
         ///
-        ///    PUT api/v1/smjer/1
+        ///    PUT api/v1/pilot/1
         ///
         /// {
         ///  "sifra": 0,
-        ///  "naziv": "Novi naziv",
-        ///  "trajanje": 120,
-        ///  "cijena": 890.22,
-        ///  "upisnina": 0,
-        ///  "verificiran": true
+        ///  "ime": "Novi ime",
+        ///  "prezime": Novo prezime,
+        ///  "broj dozvole": HR.12345,
+        /// 
+        ///  
         /// }
         ///
         /// </remarks>
@@ -174,7 +174,7 @@ namespace APP.Controllers
         /// <remarks>
         /// Primjer upita:
         ///
-        ///    DELETE api/v1/smjer/1
+        ///    DELETE api/v1/pilot/1
         ///    
         /// </remarks>
         /// <param name="sifra">Šifra pilota koji se briše</param>  

@@ -3135,19 +3135,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Polaznik\\.nuget\\packages\\": {}
+    "C:\\Users\\Kristijan\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Polaznik\\Documents\\GitHub\\ELAAPP\\APP\\APP.csproj",
+      "projectUniqueName": "C:\\Users\\Kristijan\\Documents\\GitHub\\ELAAPP\\APP\\APP.csproj",
       "projectName": "APP",
-      "projectPath": "C:\\Users\\Polaznik\\Documents\\GitHub\\ELAAPP\\APP\\APP.csproj",
-      "packagesPath": "C:\\Users\\Polaznik\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Polaznik\\Documents\\GitHub\\ELAAPP\\APP\\obj\\",
+      "projectPath": "C:\\Users\\Kristijan\\Documents\\GitHub\\ELAAPP\\APP\\APP.csproj",
+      "packagesPath": "C:\\Users\\Kristijan\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Kristijan\\Documents\\GitHub\\ELAAPP\\APP\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Polaznik\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Kristijan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -3167,6 +3167,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -3209,7 +3214,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
       }
     }
   }

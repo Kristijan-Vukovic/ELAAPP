@@ -36,10 +36,6 @@ function NavBar() {
               <NavDropdown.Item href="#action/3.3">
                 Ovdje treći entitet
               </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Grupe
-              </NavDropdown.Item>
             </NavDropdown>
             
           </Nav>

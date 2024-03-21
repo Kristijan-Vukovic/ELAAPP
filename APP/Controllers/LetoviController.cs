@@ -6,12 +6,12 @@ namespace APP.Controllers
 {
 
     /// <summary>
-    /// Namjenjeno za CRUD operacije nad entitetom Zrakoplov u bazi
+    /// Namjenjeno za CRUD operacije nad entitetom Let u bazi
     /// </summary>
     [ApiController]
     [Route("api/v1/[controller]")]
 
-    public class ZrakoplovController : ControllerBase
+    public class LetController : ControllerBase
     {
         /// <summary>
         /// Kontest za rad s bazom koji će biti postavljen s pomoću Dependecy Injection-om
@@ -23,23 +23,23 @@ namespace APP.Controllers
         /// pomoću DI principa
         /// </summary>
         /// <param name="context"></param>
-        public ZrakoplovController(ELAContext context)
+        public LetController(ELAContext context)
         {
             _context = context;
         }
 
 
         /// <summary>
-        /// Dohvaća sve zrakoplove iz baze
+        /// Dohvaća sve letove iz baze
         /// </summary>
         /// <remarks>
         /// Primjer upita
         /// 
         /// <returns></returns>
-        /// GET api/v1/Zrakoplov
+        /// GET api/v1/Let
         /// 
         ///<remarks>
-        ///   /// <returns>Zrakoplovi u bazi</returns>
+        ///   /// <returns>Letovi u bazi</returns>
         /// <response code="200">Sve OK, ako nema podataka content-length: 0 </response>
         /// <response code="400">Zahtjev nije valjan</response>
         /// <response code="503">Baza na koju se spajam nije dostupna</response>
@@ -53,12 +53,12 @@ namespace APP.Controllers
             }
             try
             {
-                var zrakoplov = _context.Zrakoplovi.ToList();
-                if (zrakoplov == null || zrakoplov.Count == 0)
+                var let = _context.Letovi.ToList();
+                if (let == null || let.Count == 0)
                 {
                     return new EmptyResult();
                 }
-                return new JsonResult(zrakoplov);
+                return new JsonResult(let);
             }
             catch (Exception ex)
             {
@@ -69,30 +69,30 @@ namespace APP.Controllers
         }
 
         /// <summary>
-        /// Dodaje novi zrakoplov u bazu
+        /// Dodaje novi let u bazu
         /// </summary>
         /// <remarks>
-        ///     POST api/v1/Zrakoplov
+        ///     POST api/v1/Let
         ///     {naziv: "Primjer naziva"}
         /// </remarks>
-        /// <param name="zrakoplov">Zrakoplov za unijeti u JSON formatu</param>
+        /// <param name="let">Let za unijeti u JSON formatu</param>
         /// <response code="201">Kreirano</response>
         /// <response code="400">Zahtjev nije valjan (BadRequest)</response> 
         /// <response code="503">Baza nedostupna iz razno raznih razloga</response> 
-        /// <returns>Zrakoplov s šifrom koju je dala baza</returns>
+        /// <returns>Let s šifrom koju je dala baza</returns>
         [HttpPost]
 
-        public IActionResult Post(Zrakoplov zrakoplov)
+        public IActionResult Post(Let let)
         {
-            if (!ModelState.IsValid || zrakoplov == null)
+            if (!ModelState.IsValid || let == null)
             {
                 return BadRequest();
             }
             try
             {
-                _context.Zrakoplovi.Add(zrakoplov);
+                _context.Letovi.Add(let);
                 _context.SaveChanges();
-                return StatusCode(StatusCodes.Status201Created, zrakoplov);
+                return StatusCode(StatusCodes.Status201Created, let);
             }
             catch (Exception ex)
             {
@@ -106,7 +106,7 @@ namespace APP.Controllers
         /// <remarks>
         /// Primjer upita:
         ///
-        ///    PUT api/v1/zrakoplov/1
+        ///    PUT api/v1/let/1
         ///
         /// {
         ///  "sifra": 0,
@@ -118,18 +118,18 @@ namespace APP.Controllers
         /// }
         ///
         /// </remarks>
-        /// <param name="sifra">Šifra zrakoplova koji se mijenja</param>  
-        /// <param name="zrakoplov">Zrakoplov za unijeti u JSON formatu</param>  
-        /// <returns>Svi poslani podaci od Zrakoplova koji su spremljeni u bazi</returns>
+        /// <param name="sifra">Šifra leta koji se mijenja</param>  
+        /// <param name="let">Zrakoplov za unijeti u JSON formatu</param>  
+        /// <returns>Svi poslani podaci od letova koji su spremljeni u bazi</returns>
         /// <response code="200">Sve je u redu</response>
-        /// <response code="204">Nema u bazi zrakolova kojeg želimo promijeniti</response>
+        /// <response code="204">Nema u bazi leta kojeg želimo promijeniti</response>
         /// <response code="415">Nismo poslali JSON</response> 
         /// <response code="503">Baza nedostupna</response> 
         [HttpPut]
         [Route("{sifra:int}")]
-        public IActionResult Put(int sifra, Zrakoplov zrakoplov)
+        public IActionResult Put(int sifra, Let let)
         {
-            if (sifra <= 0 || !ModelState.IsValid || zrakoplov == null)
+            if (sifra <= 0 || !ModelState.IsValid || let == null)
             {
                 return BadRequest();
             }
@@ -139,9 +139,9 @@ namespace APP.Controllers
             {
 
 
-                var zrakoplovIzBaze = _context.Zrakoplovi.Find(sifra);
+                var letIzBaze = _context.Letovi.Find(sifra);
 
-                if (zrakoplovIzBaze == null)
+                if (letIzBaze == null)
                 {
                     return StatusCode(StatusCodes.Status204NoContent, sifra);
                 }
@@ -149,15 +149,16 @@ namespace APP.Controllers
 
                 // inače ovo rade mapperi
                 // za sada ručno
-                zrakoplovIzBaze.TipZrakoplova = zrakoplov.TipZrakoplova;
-                zrakoplovIzBaze.Registracija = zrakoplov.Registracija;
-                
+                letIzBaze.Vrijemepolijetanja = let.Vrijemepolijetanja;
+                letIzBaze.Vrijemeslijetanja = let.Vrijemeslijetanja;
+                letIzBaze.Preletkm = let.Preletkm;
 
 
-                _context.Zrakoplovi.Update(zrakoplovIzBaze);
+
+                _context.Letovi.Update(letIzBaze);
                 _context.SaveChanges();
 
-                return StatusCode(StatusCodes.Status200OK, zrakoplovIzBaze);
+                return StatusCode(StatusCodes.Status200OK, letIzBaze);
             }
             catch (Exception ex)
             {
@@ -179,14 +180,14 @@ namespace APP.Controllers
 
             try
             {
-                var zrakoplovIzbaze = _context.Zrakoplovi.Find(sifra);
+                var letIzbaze = _context.Letovi.Find(sifra);
 
-                if (zrakoplovIzbaze == null)
+                if (letIzbaze == null)
                 {
                     return StatusCode(StatusCodes.Status204NoContent, sifra);
                 }
 
-                _context.Zrakoplovi.Remove(zrakoplovIzbaze);
+                _context.Letovi.Remove(letIzbaze);
                 _context.SaveChanges();
 
                 return new JsonResult("{\"poruka\": \"Obrisano\"}"); // ovo nije baš najbolja praksa ali da znake kako i to može

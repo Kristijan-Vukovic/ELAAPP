@@ -27,9 +27,12 @@ namespace APP.Data
         /// Zrakoplovi u bazi
         /// </summary>
         public DbSet<Zrakoplov> Zrakoplovi { get; set; }
-        
- 
 
+
+        /// <summary>
+        /// Letovi u bazi
+        /// </summary>
+        public DbSet<Let> Letovi { get; set; }
 
 
 
