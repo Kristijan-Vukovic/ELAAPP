@@ -34,7 +34,7 @@ function NavBar() {
                 Zrakoplovi
               </NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">
-                Ovdje treći entitet
+                Letovi
               </NavDropdown.Item>
             </NavDropdown>
             
