@@ -1,20 +1,18 @@
 import { useEffect, useState } from "react";
-import { Container, Table } from "react-bootstrap";
+import { Button, Container, Table } from "react-bootstrap";
 import PilotService from "../../services/PilotService";
-import { NumericFormat } from "react-number-format";
-import { GrValidate } from "react-icons/gr";
 import { IoIosAdd } from "react-icons/io";
 import { FaEdit, FaTrash } from "react-icons/fa";
-import { MdOutlineDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { RoutesNames } from "../../constants";
-
+import { useNavigate } from "react-router-dom";
 
 export default function Piloti(){
     const [piloti,setPiloti] = useState();
+    let navigate = useNavigate(); 
 
     async function dohvatiPilote(){
-        await PilotService.getPiloti()
+        await PilotService.get()
         .then((res)=>{
             setPiloti(res.data);
         })
@@ -22,25 +20,22 @@ export default function Piloti(){
             alert(e);
         });
     }
-     // Ovo se poziva dvaput u dev ali jednom u produkciji
-    // https://stackoverflow.com/questions/60618844/react-hooks-useeffect-is-called-twice-even-if-an-empty-array-is-used-as-an-ar
+
     useEffect(()=>{
         dohvatiPilote();
     },[]);
 
-    function verificiran(pilot){
-        if (pilot.verificiran==null) return 'gray';
-        if(pilot.verificiran) return 'green';
-        return 'red';
-    }
-
-    function verificiranTitle(pilot){
-        if (pilot.verificiran==null) return 'Nije definirano';
-        if(pilot.verificiran) return 'Verificiran';
-        return 'NIJE verificiran';
-    }
 
 
+    async function obrisiPilot(sifra) {
+        const odgovor = await PilotService.obrisi(sifra);
+    
+        if (odgovor.ok) {
+            dohvatiPilote();
+        } else {
+          alert(odgovor.poruka);
+        }
+      }
 
     return (
 
@@ -53,53 +48,38 @@ export default function Piloti(){
             <Table striped bordered hover responsive>
                 <thead>
                     <tr>
-                        <th>ime</th>
-                        <th>prezime</th>
-                        <th>brojDozvole</th>
-                        
+                        <th>Ime</th>
+                        <th>Prezime</th>
+                        <th>Broj dozvole</th>
+                       
                     </tr>
                 </thead>
                 <tbody>
-                    {pilot && piloti.map((pilot,index)=>(
+                    {piloti && piloti.map((pilot,index)=>(
                         <tr key={index}>
                             <td>{pilot.ime}</td>
-                            <td className="desno">{pilot.prezime}</td>
-                            <td className={pilot.brojDozvole==null ? 'sredina' : 'desno'}>
-                                {pilot.brojDozvole==null 
-                                ? 'Nije definirano'
-                                :
-                                    <NumericFormat 
-                                    value={pilot.brojDozvole}
-                                    displayType={'text'}
-                                    thousandSeparator='.'
-                                    decimalSeparator=','
-                                    prefix={'€'}
-                                    decimalScale={2}
-                                    fixedDecimalScale
-                                    />
-                                }
-                            </td>
+                            <td>{pilot.prezime}</td>
+                            <td>{pilot.brojDozvole}</td>
                             
                             <td className="sredina">
-                            <GrValidate 
-                            size={30} 
-                            color={verificiran(pilot)}
-                            title={verificiranTitle(pilot)}
-                            />
-                            </td>
-                            <td className="sredina">
-                                <Link to={RoutesNames.PILOTI_PROMJENI}>
-                                    <FaEdit 
+                                    <Button
+                                        variant='primary'
+                                        onClick={()=>{navigate(`/piloti/${pilot.sifra}`)}}
+                                    >
+                                        <FaEdit 
                                     size={25}
                                     />
-                                </Link>
+                                    </Button>
+                               
                                 
                                     &nbsp;&nbsp;&nbsp;
-                                <Link>
-                                    <FaTrash  
-                                    size={25}
-                                    />
-                                </Link>
+                                    <Button
+                                        variant='danger'
+                                        onClick={() => obrisiPilot(predavac.sifra)}
+                                    >
+                                        <FaTrash
+                                        size={25}/>
+                                    </Button>
 
                             </td>
                         </tr>
