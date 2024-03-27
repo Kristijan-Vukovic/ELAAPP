@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Container, Table } from "react-bootstrap";
+import { Button, Container, Table } from "react-bootstrap";
 import LetService from "../../services/LetService";
 import { NumericFormat } from "react-number-format";
 import { GrValidate } from "react-icons/gr";
@@ -14,7 +14,7 @@ export default function Letovi(){
     const [letovi,setLetovi] = useState();
 
     async function dohvatiLetove(){
-        await LetService.getLetovi()
+        await LetService.get()
         .then((res)=>{
             setLetovi(res.data);
         })
@@ -41,24 +41,29 @@ export default function Letovi(){
             <Table striped bordered hover responsive>
                 <thead>
                     <tr>
-                    <th>Trajanje</th>   <th>vrijemePolijetanja</th>
-                        <th>Cijena</th>  <th>vrijemeSlijetanja</th>
-                        <th>Upisnina</th>  <th>preletkm</th>
-                        <th>Verificiran</th>  <th>pilot</th>
-                        <th>Akcija</th>   <th>zrakoplov</th>
+                        <th>Trajanje</th>   
+                        <th>vrijemePolijetanja</th>
+                        <th>Cijena</th>
+                        <th>vrijemeSlijetanja</th>
+                        <th>Upisnina</th>  
+                        <th>preletkm</th>
+                        <th>Verificiran</th>  
+                        <th>pilot</th>
+                        <th>Akcija</th>
+                        <th>zrakoplov</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {letovi && letovi.map((let,index)=>(
+                    {letovi && letovi.map((flight, index)=>(
                         <tr key={index}>
-                            <td>{let.vrijemePolijetanja}</td>
-                            <td className="desno">{let.vrijemeSlijetanja}</td>
-                            <td className={let.preletkm==null ? 'sredina' : 'desno'}>
-                                {let.preletkm==null 
+                            <td>{flight.vrijemePolijetanja}</td>
+                            <td className="desno">{flight.vrijemeSlijetanja}</td>
+                            <td className={flight.preletkm==null ? 'sredina' : 'desno'}>
+                                {flight.preletkm==null 
                                 ? 'Nije definirano'
                                 :
                                     <NumericFormat 
-                                    value={let.preletkm}
+                                    value={flight.preletkm}
                                     displayType={'text'}
                                     thousandSeparator='.'
                                     decimalSeparator=','
@@ -68,12 +73,12 @@ export default function Letovi(){
                                     />
                                 }
                             </td>
-                            <td className={let.pilot==null ? 'sredina' : 'desno'}>
-                                {smjer.upisnina==null 
+                            <td className={flight.pilot==null ? 'sredina' : 'desno'}>
+                                {flight.pilot==null 
                                 ? 'Nije definirano'
                                 :
                                     <NumericFormat 
-                                    value={smjer.upisnina}
+                                    value={flight.pilot}
                                     displayType={'text'}
                                     thousandSeparator='.'
                                     decimalSeparator=','
@@ -84,11 +89,6 @@ export default function Letovi(){
                                 }
                             </td>
                             <td className="sredina">
-                            <GrValidate 
-                            size={30} 
-                            color={verificiran(smjer)}
-                            title={verificiranTitle(smjer)}
-                            />
                             </td>
                             <td className="sredina">
                                 <Button 

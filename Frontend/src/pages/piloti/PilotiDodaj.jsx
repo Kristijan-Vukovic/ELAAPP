@@ -23,7 +23,7 @@ export default function PilotiDodaj() {
     const podaci = new FormData(e.target);
 
 
-    dodajPredavac({
+    dodajPilot({
       ime: podaci.get('ime'),
       prezime: podaci.get('prezime'),
       brojDozvole: podaci.get('brojDozvole'),

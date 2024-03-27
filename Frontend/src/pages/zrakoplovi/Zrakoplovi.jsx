@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Container, Table } from "react-bootstrap";
-import PilotService from "../../services/ZrakoploviService";
+import ZrakoplovService from "../../services/ZrakoplovService";
 import { NumericFormat } from "react-number-format";
 import { GrValidate } from "react-icons/gr";
 import { IoIosAdd } from "react-icons/io";
@@ -11,10 +11,10 @@ import { RoutesNames } from "../../constants";
 
 
 export default function Zrakoplovi(){
-    const [piloti,setZrakoplovi] = useState();
+    const [zrakoplovi,setZrakoplovi] = useState();
 
     async function dohvatiZrakoplove(){
-        await ZrakoplovService.getZrakoplovi()
+        await ZrakoplovService.get()
         .then((res)=>{
             setZrakoplovi(res.data);
         })
@@ -34,7 +34,7 @@ export default function Zrakoplovi(){
         return 'red';
     }
 
-    function verificiranTitle(zrakolpov){
+    function verificiranTitle(zrakoplov){
         if (zrakoplov.verificiran==null) return 'Nije definirano';
         if(zrakoplov.verificiran) return 'Verificiran';
         return 'NIJE verificiran';
@@ -59,7 +59,7 @@ export default function Zrakoplovi(){
                     </tr>
                 </thead>
                 <tbody>
-                    {zrakoplov && zrakoplovi.map((zrakoplov,index)=>(
+                    {zrakoplovi && zrakoplovi.map((zrakoplov,index)=>(
                         <tr key={index}>
                             <td>{zrakoplov.tipzrakoplova}</td>
                             <td className="desno">{zrakoplov.registracija}</td>

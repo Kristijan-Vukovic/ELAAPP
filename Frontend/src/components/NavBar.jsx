@@ -30,10 +30,14 @@ function NavBar() {
               >
                 Piloti
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
+              <NavDropdown.Item 
+                onClick={()=>navigate(RoutesNames.ZRAKOPLOVI_PREGLED)}
+              >
                 Zrakoplovi
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">
+              <NavDropdown.Item 
+                onClick={()=>navigate(RoutesNames.LETOVI_PREGLED)}
+              >
                 Letovi
               </NavDropdown.Item>
             </NavDropdown>
