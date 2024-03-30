@@ -1,17 +1,16 @@
 import { useEffect, useState } from "react";
-import { Container, Table } from "react-bootstrap";
+import { Container, Button, Table } from "react-bootstrap";
 import ZrakoplovService from "../../services/ZrakoplovService";
-import { NumericFormat } from "react-number-format";
-import { GrValidate } from "react-icons/gr";
 import { IoIosAdd } from "react-icons/io";
 import { FaEdit, FaTrash } from "react-icons/fa";
-import { MdOutlineDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { RoutesNames } from "../../constants";
+import { useNavigate } from "react-router-dom";
 
 
 export default function Zrakoplovi(){
     const [zrakoplovi,setZrakoplovi] = useState();
+    let navigate = useNavigate(); 
 
     async function dohvatiZrakoplove(){
         await ZrakoplovService.get()
@@ -28,19 +27,17 @@ export default function Zrakoplovi(){
         dohvatiZrakoplove();
     },[]);
 
-    function verificiran(zrakoplov){
-        if (zrakoplov.verificiran==null) return 'gray';
-        if(zrakoplov.verificiran) return 'green';
-        return 'red';
-    }
-
-    function verificiranTitle(zrakoplov){
-        if (zrakoplov.verificiran==null) return 'Nije definirano';
-        if(zrakoplov.verificiran) return 'Verificiran';
-        return 'NIJE verificiran';
-    }
 
 
+    async function obrisiZrakoplov(sifra) {
+        const odgovor = await ZrakoplovService.obrisi(sifra);
+    
+        if (odgovor.ok) {
+            dohvatiZrakoplove();
+        } else {
+          alert(odgovor.poruka);
+        }
+      }
 
     return (
 
@@ -53,39 +50,36 @@ export default function Zrakoplovi(){
             <Table striped bordered hover responsive>
                 <thead>
                     <tr>
-                        <th>tipzrakoplova</th>
-                        <th>registracija</th>
-                        
+                        <th>Tip zrakoplova</th>
+                        <th>Registracija</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     {zrakoplovi && zrakoplovi.map((zrakoplov,index)=>(
                         <tr key={index}>
-                            <td>{zrakoplov.tipzrakoplova}</td>
+                            <td>{zrakoplov.tipZrakoplova}</td>
                             <td className="desno">{zrakoplov.registracija}</td>
-                           
-                
                             
                             <td className="sredina">
-                            <GrValidate 
-                            size={30} 
-                            color={verificiran(zrakoplov)}
-                            title={verificiranTitle(zrakoplov)}
-                            />
-                            </td>
-                            <td className="sredina">
-                                <Link to={RoutesNames.ZRAKOPLOV_PROMJENI}>
-                                    <FaEdit 
+                                    <Button
+                                        variant='primary'
+                                        onClick={()=>{navigate(`/zrakoplovi/${zrakoplov.sifra}`)}}
+                                    >
+                                        <FaEdit 
                                     size={25}
                                     />
-                                </Link>
+                                    </Button>
+                               
                                 
                                     &nbsp;&nbsp;&nbsp;
-                                <Link>
-                                    <FaTrash  
-                                    size={25}
-                                    />
-                                </Link>
+                                    <Button
+                                        variant='danger'
+                                        onClick={() => obrisiZrakoplov(zrakoplov.sifra)}
+                                    >
+                                        <FaTrash
+                                        size={25}/>
+                                    </Button>
 
                             </td>
                         </tr>

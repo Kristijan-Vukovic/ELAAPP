@@ -39,8 +39,8 @@ export default function PilotiDodaj() {
           <Form.Control
             type='text'
             name='ime'
-            placeholder='Ime Pilota'
-            maxLength={255}
+            placeholder='Ime pilota'
+            maxLength={50}
             required
           />
         </Form.Group>
@@ -50,26 +50,21 @@ export default function PilotiDodaj() {
           <Form.Control
             type='text'
             name='prezime'
-            placeholder='Prezime Pilota'
-            maxLength={255}
+            placeholder='Prezime pilota'
+            maxLength={50}
             required
           />
         </Form.Group>
 
         <Form.Group className='mb-3' controlId='brojDozvole'>
-          <Form.Label>BrojDozvole</Form.Label>
+          <Form.Label>Broj dozvole</Form.Label>
           <Form.Control
             type='text'
             name='brojDozvole'
-            placeholder='OIB Predavaca'
-            maxLength={11}
+            placeholder='Broj dozvole'
+            maxLength={15}
           />
         </Form.Group>
-
-        
-
-        
-       
 
         <Row>
           <Col>

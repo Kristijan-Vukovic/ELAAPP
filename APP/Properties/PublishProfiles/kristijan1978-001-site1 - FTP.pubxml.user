@@ -7,28 +7,28 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword />
-    <History>True|2024-03-27T21:09:26.6356718Z;True|2024-03-27T22:06:11.9858888+01:00;True|2024-03-27T22:03:30.4218513+01:00;True|2024-03-27T21:58:27.4826608+01:00;False|2024-03-27T21:56:37.8673748+01:00;</History>
+    <History>True|2024-03-30T19:03:57.1765454Z;True|2024-03-30T19:05:36.9862370+01:00;True|2024-03-30T18:46:48.0221863+01:00;True|2024-03-30T18:26:26.5037052+01:00;True|2024-03-30T18:22:42.2931388+01:00;False|2024-03-30T18:21:35.6984618+01:00;True|2024-03-27T22:09:26.6356718+01:00;True|2024-03-27T22:06:11.9858888+01:00;True|2024-03-27T22:03:30.4218513+01:00;True|2024-03-27T21:58:27.4826608+01:00;False|2024-03-27T21:56:37.8673748+01:00;</History>
     <LastFailureDetails />
     <_PublishTargetUrl>ftp://win6218.site4now.net:21/site1</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="APP.deps.json">
-      <publishTime>03/27/2024 22:08:14</publishTime>
+      <publishTime>03/30/2024 20:03:14</publishTime>
     </File>
     <File Include="APP.dll">
-      <publishTime>03/27/2024 22:08:14</publishTime>
+      <publishTime>03/30/2024 20:03:13</publishTime>
     </File>
     <File Include="APP.exe">
-      <publishTime>03/27/2024 22:08:14</publishTime>
+      <publishTime>03/30/2024 20:03:13</publishTime>
     </File>
     <File Include="APP.pdb">
-      <publishTime>03/27/2024 22:08:14</publishTime>
+      <publishTime>03/30/2024 20:03:13</publishTime>
     </File>
     <File Include="APP.runtimeconfig.json">
-      <publishTime>03/27/2024 21:55:12</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="APP.xml">
-      <publishTime>03/27/2024 22:08:14</publishTime>
+      <publishTime>03/30/2024 20:03:13</publishTime>
     </File>
     <File Include="appsettings.Development.json">
       <publishTime>02/24/2024 18:14:17</publishTime>
@@ -166,7 +166,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/23/2021 01:49:44</publishTime>
     </File>
     <File Include="web.config">
-      <publishTime>03/27/2024 22:08:24</publishTime>
+      <publishTime>03/30/2024 20:03:23</publishTime>
     </File>
     <File Include="wwwroot/index.html">
       <publishTime>02/24/2024 18:14:18</publishTime>

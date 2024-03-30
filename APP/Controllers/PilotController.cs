@@ -67,6 +67,37 @@ namespace APP.Controllers
             }
 
         }
+
+        /// <summary>
+        /// Dohvaća pilota sa traženom šifrom iz baze
+        /// </summary>
+        /// <param name="sifra">Šifra pilota</param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("{sifra:int}")]
+        public IActionResult GetBySifra(int sifra)
+        {
+            // kontrola ukoliko upit nije valjan
+            if (!ModelState.IsValid || sifra <= 0)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                var pilot = _context.Piloti.Find(sifra);
+                if (pilot == null)
+                {
+                    return BadRequest($"Ne postoji pilot sa šifrom {sifra} u bazi");
+                }
+                return new JsonResult(pilot);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status503ServiceUnavailable,
+                    ex.Message);
+            }
+        }
+
         /// <summary>
         /// Dodaje novog pilota u bazu
         /// </summary>

@@ -2,16 +2,17 @@ import { useEffect, useState } from "react";
 import { Button, Container, Table } from "react-bootstrap";
 import LetService from "../../services/LetService";
 import { NumericFormat } from "react-number-format";
-import { GrValidate } from "react-icons/gr";
 import { IoIosAdd } from "react-icons/io";
 import { FaEdit, FaTrash } from "react-icons/fa";
-import { MdOutlineDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { RoutesNames } from "../../constants";
+import moment from "moment";
+import { useNavigate } from "react-router-dom";
 
 
 export default function Letovi(){
     const [letovi,setLetovi] = useState();
+    let navigate = useNavigate(); 
 
     async function dohvatiLetove(){
         await LetService.get()
@@ -28,6 +29,18 @@ export default function Letovi(){
         dohvatiLetove();
     },[]);
 
+
+
+    async function obrisiLet(sifra) {
+        const odgovor = await LetService.obrisi(sifra);
+    
+        if (odgovor.ok) {
+            dohvatiLetove();
+        } else {
+          alert(odgovor.poruka);
+        }
+      }
+
     
 
     return (
@@ -40,60 +53,45 @@ export default function Letovi(){
             </Link>
             <Table striped bordered hover responsive>
                 <thead>
-                    <tr>
-                        <th>Trajanje</th>   
-                        <th>vrijemePolijetanja</th>
-                        <th>Cijena</th>
-                        <th>vrijemeSlijetanja</th>
-                        <th>Upisnina</th>  
-                        <th>preletkm</th>
-                        <th>Verificiran</th>  
-                        <th>pilot</th>
-                        <th>Akcija</th>
-                        <th>zrakoplov</th>
+                    <tr>  
+                        <th>Vrijeme Polijetanja</th>
+                        <th>Vrijeme Slijetanja</th>
+                        <th>Prelet (km)</th>
+                        <th>Ime pilota</th>
+                        <th>Tip zrakoplova</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     {letovi && letovi.map((flight, index)=>(
                         <tr key={index}>
-                            <td>{flight.vrijemePolijetanja}</td>
-                            <td className="desno">{flight.vrijemeSlijetanja}</td>
+                            <td>{moment.utc(flight.vrijemePolijetanja).format('yyyy-MM-DD HH:mm')}</td>
+                            <td className="desno">{moment.utc(flight.vrijemeSlijetanja).format('yyyy-MM-DD HH:mm')}</td>
                             <td className={flight.preletkm==null ? 'sredina' : 'desno'}>
-                                {flight.preletkm==null 
+                                {flight.preletKm==null 
                                 ? 'Nije definirano'
                                 :
                                     <NumericFormat 
-                                    value={flight.preletkm}
+                                    value={flight.preletKm}
                                     displayType={'text'}
                                     thousandSeparator='.'
                                     decimalSeparator=','
-                                    prefix={'€'}
+                                    suffix={' km'}
                                     decimalScale={2}
                                     fixedDecimalScale
                                     />
                                 }
                             </td>
-                            <td className={flight.pilot==null ? 'sredina' : 'desno'}>
-                                {flight.pilot==null 
-                                ? 'Nije definirano'
-                                :
-                                    <NumericFormat 
-                                    value={flight.pilot}
-                                    displayType={'text'}
-                                    thousandSeparator='.'
-                                    decimalSeparator=','
-                                    prefix={'€'}
-                                    decimalScale={2}
-                                    fixedDecimalScale
-                                    />
-                                }
+                            <td className={flight.imePilota == null ? 'sredina' : 'desno'}>
+                                {flight.imePilota || 'Nije definirano'}
                             </td>
-                            <td className="sredina">
+                            <td className={flight.tipZrakoplova == null ? 'sredina' : 'desno'}>
+                                {flight.tipZrakoplova || 'Nije definirano'}
                             </td>
                             <td className="sredina">
                                 <Button 
                                 variant="primary"
-                                onClick={()=>{navigate(`/smjerovi/${smjer.sifra}`)}}>
+                                onClick={()=>{navigate(`/letovi/${flight.sifra}`)}}>
                                     <FaEdit 
                                     size={25}
                                     />
@@ -102,7 +100,7 @@ export default function Letovi(){
                                     &nbsp;&nbsp;&nbsp;
                                 <Button
                                     variant="danger"
-                                    onClick={()=>obrisiSmjer(smjer.sifra)}
+                                    onClick={()=>obrisiLet(flight.sifra)}
                                 >
                                     <FaTrash  
                                     size={25}

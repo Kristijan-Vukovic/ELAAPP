@@ -1,5 +1,6 @@
 ﻿using APP.Data;
 using APP.Models;
+using APP.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace APP.Controllers
@@ -46,17 +47,51 @@ namespace APP.Controllers
         [HttpGet]
         public IActionResult Get()
         {
+            try
+            {
+                var letovi = _context.Letovi.Select(let => new LetViewModel
+                { 
+                    Sifra = let.Sifra,
+                    VrijemePolijetanja = let.VrijemePolijetanja,
+                    VrijemeSlijetanja = let.VrijemeSlijetanja,
+                    PreletKm = let.PreletKm,
+                    ImePilota = $"{let.PilotInstanca!.Ime} {let.PilotInstanca.Prezime}",
+                    TipZrakoplova = let.ZrakoplovInstanca!.TipZrakoplova
+                }).ToList();
+                if (letovi.Count == 0)
+                {
+                    return new EmptyResult();
+                }
+                return new JsonResult(letovi);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status503ServiceUnavailable,
+                    ex.Message);
+            }
+
+        }
+
+        /// <summary>
+        /// Dohvaća let sa traženom šifrom iz baze
+        /// </summary>
+        /// <param name="sifra">Šifra leta</param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("{sifra:int}")]
+        public IActionResult GetBySifra(int sifra)
+        {
             // kontrola ukoliko upit nije valjan
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || sifra <= 0)
             {
                 return BadRequest(ModelState);
             }
             try
             {
-                var let = _context.Letovi.ToList();
-                if (let == null || let.Count == 0)
+                var let = _context.Letovi.Find(sifra);
+                if (let == null)
                 {
-                    return new EmptyResult();
+                    return BadRequest($"Ne postoji let sa šifrom {sifra} u bazi");
                 }
                 return new JsonResult(let);
             }
@@ -65,7 +100,6 @@ namespace APP.Controllers
                 return StatusCode(StatusCodes.Status503ServiceUnavailable,
                     ex.Message);
             }
-
         }
 
         /// <summary>
@@ -149,9 +183,9 @@ namespace APP.Controllers
 
                 // inače ovo rade mapperi
                 // za sada ručno
-                letIzBaze.Vrijemepolijetanja = let.Vrijemepolijetanja;
-                letIzBaze.Vrijemeslijetanja = let.Vrijemeslijetanja;
-                letIzBaze.Preletkm = let.Preletkm;
+                letIzBaze.VrijemePolijetanja = let.VrijemePolijetanja;
+                letIzBaze.VrijemeSlijetanja = let.VrijemeSlijetanja;
+                letIzBaze.PreletKm = let.PreletKm;
 
 
 

@@ -1,4 +1,5 @@
-﻿using APP.Models;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace APP.Models
 {
@@ -11,22 +12,43 @@ namespace APP.Models
         /// <summary>
         /// Ovo mi je vrijeme polijetanja 
         /// </summary>
-        public DateTime? Vrijemepolijetanja { get; set; }
+        [Required]
+        public DateTime VrijemePolijetanja { get; set; }
 
         /// <summary>
         /// Ovo mi je vrijeme slijetanja
         /// </summary>
-        public DateTime? Vrijemeslijetanja  { get; set; }
+        [Required]
+        public DateTime VrijemeSlijetanja  { get; set; }
 
         /// <summary>
         /// Ovo mi je prelet km
         /// </summary>
-        public decimal? Preletkm { get; set; }
+        public decimal? PreletKm { get; set; }
 
+        /// <summary>
+        /// Šifra pilota
+        /// </summary>
+        [Required]
         public int Pilot  { get; set; }
 
+        /// <summary>
+        /// Šifra zrakoplova
+        /// </summary>
+        [Required]
         public int Zrakoplov { get; set; }
 
+        /// <summary>
+        /// Lazy loadana instanca pilota
+        /// </summary>
+        [ForeignKey(nameof(Pilot))]
+        public virtual Pilot? PilotInstanca { get; set; }
+
+        /// <summary>
+        /// Lazy loadana instanca pilota
+        /// </summary>
+        [ForeignKey(nameof(Zrakoplov))]
+        public virtual Zrakoplov? ZrakoplovInstanca { get; set; }
 
     }
 }

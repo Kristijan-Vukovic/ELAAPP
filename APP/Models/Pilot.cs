@@ -1,4 +1,4 @@
-﻿using APP.Models;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace APP.Models
 {
@@ -11,16 +11,19 @@ namespace APP.Models
         /// <summary>
         /// Ovo mi je ime pilota
         /// </summary>
-        public string? Ime { get; set; }
+        [Required, MaxLength(50)]
+        public required string Ime { get; set; }
 
         /// <summary>
         /// Ovo mi je prezime pilota
         /// </summary>
-        public string? Prezime  { get; set; }
+        [Required, MaxLength(50)]
+        public required string Prezime  { get; set; }
 
         /// <summary>
         /// Ovo mi je BrojDozvole
         /// </summary>
-        public string? BrojDozvole { get; set; }
+        [Required, MaxLength(15)]
+        public required string BrojDozvole { get; set; }
     }
 }

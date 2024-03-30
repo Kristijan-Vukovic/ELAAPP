@@ -6,3 +6,15 @@ export const httpService = axios.create({
         'Content-Type': 'application/json'
     }
 });
+
+export function dohvatiPorukeAlert(podaci){
+    let poruke ='';
+        if(Array.isArray(podaci)){
+            for(const p of podaci){
+                poruke+= p.svojstvo + ': ' + p.poruka + '\n';
+                }
+        }else{
+            poruke = podaci;
+        }
+    return poruke;
+}

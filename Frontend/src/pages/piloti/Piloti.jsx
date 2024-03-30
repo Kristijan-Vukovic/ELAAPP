@@ -75,7 +75,7 @@ export default function Piloti(){
                                     &nbsp;&nbsp;&nbsp;
                                     <Button
                                         variant='danger'
-                                        onClick={() => obrisiPilot(predavac.sifra)}
+                                        onClick={() => obrisiPilot(pilot.sifra)}
                                     >
                                         <FaTrash
                                         size={25}/>

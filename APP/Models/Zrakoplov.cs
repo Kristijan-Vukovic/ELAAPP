@@ -1,4 +1,4 @@
-﻿using APP.Models;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace APP.Models
 {/// <summary>
@@ -6,15 +6,17 @@ namespace APP.Models
 /// </summary>
     public class Zrakoplov: Entitet
     {
-    /// <summary>
-    /// Ovdje je tip zrakoplova na kojem se leti
-    /// </summary>
-        public string? TipZrakoplova { get; set; }
+        /// <summary>
+        /// Ovdje je tip zrakoplova na kojem se leti
+        /// </summary>
+        [Required, MaxLength(50)]
+        public required string TipZrakoplova { get; set; }
 
         /// <summary>
         /// ovo je registracija zrakoplova na kojem se lati
         /// </summary>
-        public string? Registracija { get; set; }
+        [Required, MaxLength(15)]
+        public required string Registracija { get; set; }
 
 
     }

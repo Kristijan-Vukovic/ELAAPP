@@ -69,6 +69,36 @@ namespace APP.Controllers
         }
 
         /// <summary>
+        /// Dohvaća zrakoplov sa traženom šifrom iz baze
+        /// </summary>
+        /// <param name="sifra">Šifra zrakoplova</param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("{sifra:int}")]
+        public IActionResult GetBySifra(int sifra)
+        {
+            // kontrola ukoliko upit nije valjan
+            if (!ModelState.IsValid || sifra <= 0)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                var zrakoplov = _context.Zrakoplovi.Find(sifra);
+                if (zrakoplov == null)
+                {
+                    return BadRequest($"Ne postoji zrakoplov sa šifrom {sifra} u bazi");
+                }
+                return new JsonResult(zrakoplov);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status503ServiceUnavailable,
+                    ex.Message);
+            }
+        }
+
+        /// <summary>
         /// Dodaje novi zrakoplov u bazu
         /// </summary>
         /// <remarks>

@@ -50,7 +50,7 @@ async function obrisi(sifra) {
   async function getBySifra(sifra) {
     return await httpService
       .get('/'+naziv+'/' + sifra)
-      .then((res) => res)
+      .then((res) => ({ ok: true, poruka: res.data }))
       .catch((e) => {
         console.log(e);
         return { ok: false, poruka: e.response.data };
