@@ -51,7 +51,7 @@ export default function Piloti(){
                         <th>Ime</th>
                         <th>Prezime</th>
                         <th>Broj dozvole</th>
-                       
+                        <th>Akcije</th>
                     </tr>
                 </thead>
                 <tbody>

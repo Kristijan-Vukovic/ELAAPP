@@ -1,11 +1,11 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useNavigate } from 'react-router-dom';
 import { RoutesNames } from '../constants';
 
 import './NavBar.css';
+import { NavItem } from 'react-bootstrap';
 
 function NavBar() {
 
@@ -22,30 +22,14 @@ function NavBar() {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            
-            <NavDropdown title="Programi" id="basic-nav-dropdown">
-              <NavDropdown.Item 
-                onClick={()=>navigate(RoutesNames.PILOTI_PREGLED)}
-              >
-                Piloti
-              </NavDropdown.Item>
-              <NavDropdown.Item 
-                onClick={()=>navigate(RoutesNames.ZRAKOPLOVI_PREGLED)}
-              >
-                Zrakoplovi
-              </NavDropdown.Item>
-              <NavDropdown.Item 
-                onClick={()=>navigate(RoutesNames.LETOVI_PREGLED)}
-              >
-                Letovi
-              </NavDropdown.Item>
-            </NavDropdown>
-            
+          <Nav activeKey={location.pathname} className="me-auto">
+            <Nav.Link href={RoutesNames.PILOTI_PREGLED}>Piloti</Nav.Link>
+            <Nav.Link href={RoutesNames.ZRAKOPLOVI_PREGLED}>Zrakoplovi</Nav.Link>
+            <Nav.Link href={RoutesNames.LETOVI_PREGLED}>Letovi</Nav.Link>
           </Nav>
         </Navbar.Collapse>
         <Navbar.Collapse className="justify-content-end">
-        <Nav.Link target="_blank" href="http://kristijan1978-001-site1.htempurl.com/swagger/index.html">API dokumentacija</Nav.Link>
+          <Nav.Link target="_blank" href="http://kristijan1978-001-site1.htempurl.com/swagger/index.html">API dokumentacija</Nav.Link>
         </Navbar.Collapse>
       </Container>
     </Navbar>

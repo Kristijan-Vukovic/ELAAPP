@@ -83,10 +83,10 @@ export default function Letovi(){
                                 }
                             </td>
                             <td className={flight.imePilota == null ? 'sredina' : 'desno'}>
-                                {flight.imePilota || 'Nije definirano'}
+                                {flight.imePilota}
                             </td>
                             <td className={flight.tipZrakoplova == null ? 'sredina' : 'desno'}>
-                                {flight.tipZrakoplova || 'Nije definirano'}
+                                {flight.tipZrakoplova}
                             </td>
                             <td className="sredina">
                                 <Button 

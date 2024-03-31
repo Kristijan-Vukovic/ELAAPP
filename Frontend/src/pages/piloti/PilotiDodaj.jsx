@@ -63,6 +63,7 @@ export default function PilotiDodaj() {
             name='brojDozvole'
             placeholder='Broj dozvole'
             maxLength={15}
+            required
           />
         </Form.Group>
 

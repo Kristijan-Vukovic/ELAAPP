@@ -69,7 +69,7 @@ export default function PilotiPromjeni(){
       promijeniLet({
         vrijemePolijetanja: podaci.get('vrijemePolijetanja'),
         vrijemeSlijetanja: podaci.get('vrijemeSlijetanja'),
-        preletKm: podaci.get('preletKm'),
+        preletKm: podaci.get('preletKm') || null,
         pilot: parseInt(pilotSifra),
         zrakoplov: parseInt(zrakoplovSifra)
       });
@@ -105,7 +105,6 @@ export default function PilotiPromjeni(){
                 step='any'
                 name='preletKm'
                 defaultValue={flight.preletKm}
-                placeholder='20'
             />
           </Form.Group>
 

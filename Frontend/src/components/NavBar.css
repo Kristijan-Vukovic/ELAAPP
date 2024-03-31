@@ -1,3 +1,7 @@
 .linkPocetna{
     cursor: pointer;
 }
+
+.active {
+    color: blue !important;
+}

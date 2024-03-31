@@ -186,8 +186,8 @@ namespace APP.Controllers
                 letIzBaze.VrijemePolijetanja = let.VrijemePolijetanja;
                 letIzBaze.VrijemeSlijetanja = let.VrijemeSlijetanja;
                 letIzBaze.PreletKm = let.PreletKm;
-
-
+                letIzBaze.Pilot = let.Pilot;
+                letIzBaze.Zrakoplov = let.Zrakoplov;
 
                 _context.Letovi.Update(letIzBaze);
                 _context.SaveChanges();
