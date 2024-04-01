@@ -65,20 +65,20 @@ export default function Letovi(){
                 <tbody>
                     {letovi && letovi.map((flight, index)=>(
                         <tr key={index}>
-                            <td>{moment.utc(flight.vrijemePolijetanja).format('yyyy-MM-DD HH:mm')}</td>
-                            <td className="desno">{moment.utc(flight.vrijemeSlijetanja).format('yyyy-MM-DD HH:mm')}</td>
-                            <td className={flight.preletkm==null ? 'sredina' : 'desno'}>
+                            <td>{moment.utc(flight.vrijemePolijetanja).format('DD.MM.yyyy. HH:mm')}</td>
+                            <td className="desno">{moment.utc(flight.vrijemeSlijetanja).format('DD.MM.yyyy. HH:mm')}</td>
+                            <td className={flight.preletKm==null ? 'sredina' : 'desno'}>
                                 {flight.preletKm==null 
                                 ? 'Nije definirano'
                                 :
                                     <NumericFormat 
-                                    value={flight.preletKm}
-                                    displayType={'text'}
-                                    thousandSeparator='.'
-                                    decimalSeparator=','
-                                    suffix={' km'}
-                                    decimalScale={2}
-                                    fixedDecimalScale
+                                        value={flight.preletKm}
+                                        displayType={'text'}
+                                        thousandSeparator='.'
+                                        decimalSeparator=','
+                                        suffix={' km'}
+                                        decimalScale={2}
+                                        fixedDecimalScale
                                     />
                                 }
                             </td>

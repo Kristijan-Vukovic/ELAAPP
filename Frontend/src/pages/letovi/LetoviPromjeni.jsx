@@ -7,7 +7,7 @@ import LetService from "../../services/LetService";
 import PilotService from "../../services/PilotService";
 import ZrakoplovService from "../../services/ZrakoplovService";
 
-export default function PilotiPromjeni(){
+export default function LetoviPromjeni(){
     const [flight, setFlight] = useState({});
 
     const [piloti, setPiloti] = useState([]);

@@ -6,7 +6,7 @@ import ZrakoplovService from "../../services/ZrakoplovService";
 import { RoutesNames } from '../../constants';
 import { useEffect, useState } from "react";
 
-export default function LetiDodaj(){
+export default function LetoviDodaj(){
     const navigate = useNavigate();
 
     const [piloti, setPiloti] = useState([]);
@@ -87,7 +87,6 @@ export default function LetiDodaj(){
                 type='number'
                 step='any'
                 name='preletKm'
-                placeholder='20'
             />
           </Form.Group>
 
