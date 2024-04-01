@@ -6,8 +6,12 @@ export default function Pocetna(){
         <>
         <Container className='sredina'>
             <h2>Dobrodošli na ELA aplikaciju</h2>
-            <br/>
-            <h4>Tko leti, vrijedi, <br/>tko vrijedi, leti...<br/>tko ne leti ne vrijedi.<br/> <i>(Grunf)</i></h4>
+            <img 
+                src="/tko_leti-Grunf.jpg" 
+                alt="Tko vrijedi leti, tko leti vrijedi, tko ne leti ne vrijedi" 
+                title="Tko vrijedi leti, tko leti vrijedi, tko ne leti ne vrijedi"
+                width="400"
+            />
         </Container>
         </>
     );
