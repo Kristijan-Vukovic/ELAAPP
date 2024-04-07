@@ -6,28 +6,28 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { RoutesNames } from "../../constants";
 import { useNavigate } from "react-router-dom";
-
+import { dohvatiPorukeAlert } from "../../services/httpService";
 
 export default function Zrakoplovi(){
     const [zrakoplovi,setZrakoplovi] = useState();
     let navigate = useNavigate(); 
 
     async function dohvatiZrakoplove(){
-        await ZrakoplovService.get()
-        .then((res)=>{
-            setZrakoplovi(res.data);
-        })
-        .catch((e)=>{
-            alert(e);
-        });
+        const odgovor = await ZrakoplovService.get();
+
+        if (!odgovor.ok){
+            alert(dohvatiPorukeAlert(odgovor.podaci));
+            return;
+        }
+
+        setZrakoplovi(odgovor.podaci);
     }
-     // Ovo se poziva dvaput u dev ali jednom u produkciji
+
+    // Ovo se poziva dvaput u dev ali jednom u produkciji
     // https://stackoverflow.com/questions/60618844/react-hooks-useeffect-is-called-twice-even-if-an-empty-array-is-used-as-an-ar
     useEffect(()=>{
         dohvatiZrakoplove();
-    },[]);
-
-
+    }, []);
 
     async function obrisiZrakoplov(sifra) {
         const odgovor = await ZrakoplovService.obrisi(sifra);
@@ -35,7 +35,7 @@ export default function Zrakoplovi(){
         if (odgovor.ok) {
             dohvatiZrakoplove();
         } else {
-          alert(odgovor.poruka);
+            alert(dohvatiPorukeAlert(odgovor.podaci));
         }
       }
 
@@ -52,7 +52,7 @@ export default function Zrakoplovi(){
                     <tr>
                         <th>Tip zrakoplova</th>
                         <th>Registracija</th>
-                        <th></th>
+                        <th>Akcije</th>
                     </tr>
                 </thead>
                 <tbody>

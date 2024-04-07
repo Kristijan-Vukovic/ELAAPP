@@ -15,10 +15,10 @@ export default function ZrakoploviPromjeni(){
     async function dohvatiZrakoplov() {
       const odgovor = await ZrakoplovService.getBySifra(routeParams.sifra);
       if(!odgovor.ok){
-        alert(dohvatiPorukeAlert(odgovor.poruka));
+        alert(dohvatiPorukeAlert(odgovor.podaci));
         return;
       }
-      setZrakoplov(odgovor.poruka);
+      setZrakoplov(odgovor.podaci);
     }
   
     useEffect(() => {
@@ -31,7 +31,7 @@ export default function ZrakoploviPromjeni(){
       if (odgovor.ok) {
         navigate(RoutesNames.ZRAKOPLOVI_PREGLED);
       } else {
-        alert(odgovor.poruka.errors);
+        alert(dohvatiPorukeAlert(odgovor.podaci));
       }
     }
   

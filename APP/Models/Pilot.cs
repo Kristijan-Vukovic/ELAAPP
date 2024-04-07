@@ -11,19 +11,22 @@ namespace APP.Models
         /// <summary>
         /// Ovo mi je ime pilota
         /// </summary>
-        [Required, MaxLength(50)]
+        [Required]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "Unos mora sadržavati minimalno 3 a maksimalno 50 znakova.")]
         public required string Ime { get; set; }
 
         /// <summary>
         /// Ovo mi je prezime pilota
         /// </summary>
-        [Required, MaxLength(50)]
+        [Required]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "Unos mora sadržavati minimalno 3 a maksimalno 50 znakova.")]
         public required string Prezime  { get; set; }
 
         /// <summary>
         /// Ovo mi je BrojDozvole
         /// </summary>
-        [Required, MaxLength(15)]
+        [Required]
+        [StringLength(15, MinimumLength = 3, ErrorMessage = "Unos mora sadržavati minimalno 3 a maksimalno 15 znakova.")]
         public required string BrojDozvole { get; set; }
     }
 }

@@ -7,28 +7,28 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword />
-    <History>True|2024-04-01T11:26:11.8249322Z;True|2024-04-01T13:07:09.7891676+02:00;True|2024-04-01T12:59:21.3079144+02:00;False|2024-04-01T12:58:16.1561883+02:00;True|2024-04-01T12:49:21.9667536+02:00;True|2024-04-01T12:45:59.8735563+02:00;True|2024-04-01T12:27:18.6054343+02:00;True|2024-04-01T12:23:00.8213294+02:00;True|2024-03-31T19:43:06.6713775+02:00;True|2024-03-30T20:03:57.1765454+01:00;True|2024-03-30T19:05:36.9862370+01:00;True|2024-03-30T18:46:48.0221863+01:00;True|2024-03-30T18:26:26.5037052+01:00;True|2024-03-30T18:22:42.2931388+01:00;False|2024-03-30T18:21:35.6984618+01:00;True|2024-03-27T22:09:26.6356718+01:00;True|2024-03-27T22:06:11.9858888+01:00;True|2024-03-27T22:03:30.4218513+01:00;True|2024-03-27T21:58:27.4826608+01:00;False|2024-03-27T21:56:37.8673748+01:00;</History>
+    <History>True|2024-04-07T11:54:27.7543664Z;True|2024-04-03T18:09:11.4489921+02:00;True|2024-04-01T13:26:11.8249322+02:00;True|2024-04-01T13:07:09.7891676+02:00;True|2024-04-01T12:59:21.3079144+02:00;False|2024-04-01T12:58:16.1561883+02:00;True|2024-04-01T12:49:21.9667536+02:00;True|2024-04-01T12:45:59.8735563+02:00;True|2024-04-01T12:27:18.6054343+02:00;True|2024-04-01T12:23:00.8213294+02:00;True|2024-03-31T19:43:06.6713775+02:00;True|2024-03-30T20:03:57.1765454+01:00;True|2024-03-30T19:05:36.9862370+01:00;True|2024-03-30T18:46:48.0221863+01:00;True|2024-03-30T18:26:26.5037052+01:00;True|2024-03-30T18:22:42.2931388+01:00;False|2024-03-30T18:21:35.6984618+01:00;True|2024-03-27T22:09:26.6356718+01:00;True|2024-03-27T22:06:11.9858888+01:00;True|2024-03-27T22:03:30.4218513+01:00;True|2024-03-27T21:58:27.4826608+01:00;False|2024-03-27T21:56:37.8673748+01:00;</History>
     <LastFailureDetails />
     <_PublishTargetUrl>ftp://win6218.site4now.net:21/site1</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="APP.deps.json">
-      <publishTime>04/01/2024 13:25:09</publishTime>
+      <publishTime>04/07/2024 13:53:31</publishTime>
     </File>
     <File Include="APP.dll">
-      <publishTime>04/01/2024 13:25:08</publishTime>
+      <publishTime>04/07/2024 13:53:30</publishTime>
     </File>
     <File Include="APP.exe">
-      <publishTime>04/01/2024 13:25:08</publishTime>
+      <publishTime>04/07/2024 13:53:30</publishTime>
     </File>
     <File Include="APP.pdb">
-      <publishTime>04/01/2024 13:25:08</publishTime>
+      <publishTime>04/07/2024 13:53:30</publishTime>
     </File>
     <File Include="APP.runtimeconfig.json">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="APP.xml">
-      <publishTime>04/01/2024 13:25:08</publishTime>
+      <publishTime>04/07/2024 13:53:30</publishTime>
     </File>
     <File Include="appsettings.Development.json">
       <publishTime>02/24/2024 18:14:17</publishTime>
@@ -166,7 +166,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/23/2021 01:49:44</publishTime>
     </File>
     <File Include="web.config">
-      <publishTime>04/01/2024 13:25:18</publishTime>
+      <publishTime>04/07/2024 13:53:40</publishTime>
     </File>
     <File Include="wwwroot/android-chrome-192x192.png">
       <publishTime>03/31/2024 19:14:34</publishTime>
@@ -178,13 +178,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/31/2024 19:14:34</publishTime>
     </File>
     <File Include="wwwroot/assets/index-CFa8LuKg.js">
-      <publishTime>04/01/2024 13:22:28</publishTime>
+      <publishTime>01/04/2024 13:22:28</publishTime>
     </File>
     <File Include="wwwroot/assets/index-CnVX1vgJ.css">
-      <publishTime>04/01/2024 13:22:28</publishTime>
+      <publishTime>04/07/2024 13:51:13</publishTime>
     </File>
     <File Include="wwwroot/assets/index-hienkOxM.js">
       <publishTime>04/01/2024 12:20:54</publishTime>
+    </File>
+    <File Include="wwwroot/assets/index-OcNl1siY.js">
+      <publishTime>04/07/2024 13:51:13</publishTime>
     </File>
     <File Include="wwwroot/favicon-16x16.png">
       <publishTime>03/31/2024 19:14:34</publishTime>
@@ -196,7 +199,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/31/2024 19:14:34</publishTime>
     </File>
     <File Include="wwwroot/index.html">
-      <publishTime>04/01/2024 13:22:28</publishTime>
+      <publishTime>04/07/2024 13:51:13</publishTime>
     </File>
     <File Include="wwwroot/site.webmanifest">
       <publishTime>03/31/2024 19:14:34</publishTime>

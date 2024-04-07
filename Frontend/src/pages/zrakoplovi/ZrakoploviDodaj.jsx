@@ -2,6 +2,7 @@ import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import ZrakoplovService from "../../services/ZrakoplovService";
 import { RoutesNames } from '../../constants';
+import { dohvatiPorukeAlert } from "../../services/httpService";
 
 export default function ZrakoploviDodaj(){
     const navigate = useNavigate();
@@ -12,7 +13,7 @@ export default function ZrakoploviDodaj(){
       if (odgovor.ok) {
         navigate(RoutesNames.ZRAKOPLOVI_PREGLED);
       } else {
-        alert(odgovor.poruka.errors);
+        alert(dohvatiPorukeAlert(odgovor.podaci));
       }
     }
   
@@ -20,8 +21,7 @@ export default function ZrakoploviDodaj(){
       e.preventDefault();
   
       const podaci = new FormData(e.target);
-  
-  
+    
       dodajZrakoplov({
         tipZrakoplova: podaci.get('tipZrakoplova'),
         registracija: podaci.get('registracija')

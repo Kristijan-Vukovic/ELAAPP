@@ -5,6 +5,7 @@ import PilotService from "../../services/PilotService";
 import ZrakoplovService from "../../services/ZrakoplovService";
 import { RoutesNames } from '../../constants';
 import { useEffect, useState } from "react";
+import { dohvatiPorukeAlert } from "../../services/httpService";
 
 export default function LetoviDodaj(){
     const navigate = useNavigate();
@@ -17,14 +18,26 @@ export default function LetoviDodaj(){
   
     async function dohvatiPilote(){
       const odgovor = await PilotService.get();
-      setPiloti(odgovor.data);
-      setPilotSifra(odgovor.data[0].sifra);
+      
+      if(!odgovor.ok){
+          alert(dohvatiPorukeAlert(odgovor.podaci));
+          return;
+      }
+
+      setPiloti(odgovor.podaci);
+      setPilotSifra(odgovor.podaci[0].sifra);
     }
   
     async function dohvatiZrakoplove(){
       const odgovor = await ZrakoplovService.get();
-      setZrakoplovi(odgovor.data);
-      setZrakoplovSifra(odgovor.data[0].sifra);
+      
+      if(!odgovor.ok){
+          alert(dohvatiPorukeAlert(odgovor.podaci));
+          return;
+      }
+
+      setZrakoplovi(odgovor.podaci);
+      setZrakoplovSifra(odgovor.podaci[0].sifra);
     }
   
     async function ucitaj(){
@@ -42,7 +55,7 @@ export default function LetoviDodaj(){
       if (odgovor.ok) {
         navigate(RoutesNames.LETOVI_PREGLED);
       } else {
-        alert(odgovor.poruka.errors);
+        alert(dohvatiPorukeAlert(odgovor.podaci));
       }
     }
   

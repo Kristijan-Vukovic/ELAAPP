@@ -9,13 +9,15 @@ namespace APP.Models
         /// <summary>
         /// Ovdje je tip zrakoplova na kojem se leti
         /// </summary>
-        [Required, MaxLength(50)]
+        [Required]
+        [StringLength(50, MinimumLength = 1, ErrorMessage = "Unos mora sadržavati minimalno 1 a maksimalno 50 znakova.")]
         public required string TipZrakoplova { get; set; }
 
         /// <summary>
         /// ovo je registracija zrakoplova na kojem se lati
         /// </summary>
-        [Required, MaxLength(15)]
+        [Required]
+        [StringLength(15, MinimumLength = 3, ErrorMessage = "Unos mora sadržavati minimalno 3 a maksimalno 15 znakova.")]
         public required string Registracija { get; set; }
 
 

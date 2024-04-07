@@ -22,23 +22,37 @@ export default function LetoviPromjeni(){
 
     async function dohvatiLet() {
       const odgovor = await LetService.getBySifra(routeParams.sifra);
+
       if(!odgovor.ok){
-        alert(dohvatiPorukeAlert(odgovor.poruka));
+        alert(dohvatiPorukeAlert(odgovor.podaci));
         return;
       }
-      setFlight(odgovor.poruka);
-      setPilotSifra(odgovor.poruka.pilot);
-      setZrakoplovSifra(odgovor.poruka.zrakoplov);
+
+      setFlight(odgovor.podaci);
+      setPilotSifra(odgovor.podaci.pilot);
+      setZrakoplovSifra(odgovor.podaci.zrakoplov);
     }
   
     async function dohvatiPilote(){
       const odgovor = await PilotService.get();
-      setPiloti(odgovor.data);
+      
+      if(!odgovor.ok){
+          alert(dohvatiPorukeAlert(odgovor.podaci));
+          return;
+      }
+
+      setPiloti(odgovor.podaci);
     }
   
     async function dohvatiZrakoplove(){
       const odgovor = await ZrakoplovService.get();
-      setZrakoplovi(odgovor.data);
+      
+      if(!odgovor.ok){
+          alert(dohvatiPorukeAlert(odgovor.podaci));
+          return;
+      }
+
+      setZrakoplovi(odgovor.podaci);
     }
 
     async function ucitaj() {
@@ -50,14 +64,13 @@ export default function LetoviPromjeni(){
     useEffect(() => {
         ucitaj();
     }, []);
-  
-  
+    
     async function promijeniLet(flight) {
       const odgovor = await LetService.promjeni(routeParams.sifra, flight);
       if (odgovor.ok) {
         navigate(RoutesNames.LETOVI_PREGLED);
       } else {
-        alert(odgovor.poruka.errors);
+        alert(dohvatiPorukeAlert(odgovor.podaci));
       }
     }
   

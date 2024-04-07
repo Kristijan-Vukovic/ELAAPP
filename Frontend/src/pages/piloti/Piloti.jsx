@@ -6,26 +6,26 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { RoutesNames } from "../../constants";
 import { useNavigate } from "react-router-dom";
+import { dohvatiPorukeAlert } from "../../services/httpService";
 
 export default function Piloti(){
     const [piloti,setPiloti] = useState();
     let navigate = useNavigate(); 
 
     async function dohvatiPilote(){
-        await PilotService.get()
-        .then((res)=>{
-            setPiloti(res.data);
-        })
-        .catch((e)=>{
-            alert(e);
-        });
+        const odgovor = await PilotService.get();
+
+        if (!odgovor.ok){
+            alert(dohvatiPorukeAlert(odgovor.podaci));
+            return;
+        }
+
+        setPiloti(odgovor.podaci);
     }
 
     useEffect(()=>{
         dohvatiPilote();
-    },[]);
-
-
+    }, []);
 
     async function obrisiPilot(sifra) {
         const odgovor = await PilotService.obrisi(sifra);
@@ -33,7 +33,7 @@ export default function Piloti(){
         if (odgovor.ok) {
             dohvatiPilote();
         } else {
-          alert(odgovor.poruka);
+            alert(dohvatiPorukeAlert(odgovor.podaci));
         }
       }
 

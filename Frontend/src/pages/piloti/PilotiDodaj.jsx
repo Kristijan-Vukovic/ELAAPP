@@ -2,18 +2,17 @@ import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import PilotService from '../../services/PilotService';
 import { RoutesNames } from '../../constants';
-
+import { dohvatiPorukeAlert } from "../../services/httpService";
 
 export default function PilotiDodaj() {
   const navigate = useNavigate();
-
 
   async function dodajPilot(Pilot) {
     const odgovor = await PilotService.dodaj(Pilot);
     if (odgovor.ok) {
       navigate(RoutesNames.PILOTI_PREGLED);
     } else {
-      alert(odgovor.poruka.errors);
+      alert(dohvatiPorukeAlert(odgovor.podaci));
     }
   }
 
@@ -21,7 +20,6 @@ export default function PilotiDodaj() {
     e.preventDefault();
 
     const podaci = new FormData(e.target);
-
 
     dodajPilot({
       ime: podaci.get('ime'),

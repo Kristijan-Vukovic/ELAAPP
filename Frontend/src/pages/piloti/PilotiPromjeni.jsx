@@ -15,10 +15,10 @@ export default function PilotiPromjeni(){
     async function dohvatiPilot() {
       const odgovor = await PilotService.getBySifra(routeParams.sifra);
       if(!odgovor.ok){
-        alert(dohvatiPorukeAlert(odgovor.poruka));
+        alert(dohvatiPorukeAlert(odgovor.podaci));
         return;
       }
-      setPilot(odgovor.poruka);
+      setPilot(odgovor.podaci);
     }
   
     useEffect(() => {
@@ -31,7 +31,7 @@ export default function PilotiPromjeni(){
       if (odgovor.ok) {
         navigate(RoutesNames.PILOTI_PREGLED);
       } else {
-        alert(odgovor.poruka.errors);
+        alert(dohvatiPorukeAlert(odgovor.podaci));
       }
     }
   

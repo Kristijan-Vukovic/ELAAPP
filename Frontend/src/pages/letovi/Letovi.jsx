@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { RoutesNames } from "../../constants";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
+import { dohvatiPorukeAlert } from "../../services/httpService";
 
 
 export default function Letovi(){
@@ -15,21 +16,21 @@ export default function Letovi(){
     let navigate = useNavigate(); 
 
     async function dohvatiLetove(){
-        await LetService.get()
-        .then((res)=>{
-            setLetovi(res.data);
-        })
-        .catch((e)=>{
-            alert(e);
-        });
+        const odgovor = await LetService.get();
+
+        if (!odgovor.ok){
+            alert(dohvatiPorukeAlert(odgovor.podaci));
+            return;
+        }
+
+        setLetovi(odgovor.podaci);
     }
-     // Ovo se poziva dvaput u dev ali jednom u produkciji
+
+    // Ovo se poziva dvaput u dev ali jednom u produkciji
     // https://stackoverflow.com/questions/60618844/react-hooks-useeffect-is-called-twice-even-if-an-empty-array-is-used-as-an-ar
     useEffect(()=>{
         dohvatiLetove();
-    },[]);
-
-
+    }, []);
 
     async function obrisiLet(sifra) {
         const odgovor = await LetService.obrisi(sifra);
@@ -37,11 +38,9 @@ export default function Letovi(){
         if (odgovor.ok) {
             dohvatiLetove();
         } else {
-          alert(odgovor.poruka);
+            alert(dohvatiPorukeAlert(odgovor.podaci));
         }
-      }
-
-    
+    }
 
     return (
 
@@ -59,7 +58,7 @@ export default function Letovi(){
                         <th>Prelet (km)</th>
                         <th>Ime pilota</th>
                         <th>Tip zrakoplova</th>
-                        <th></th>
+                        <th>Akcije</th>
                     </tr>
                 </thead>
                 <tbody>
