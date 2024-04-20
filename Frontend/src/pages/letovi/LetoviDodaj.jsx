@@ -67,7 +67,7 @@ export default function LetoviDodaj(){
       dodajLet({
         vrijemePolijetanja: podaci.get('vrijemePolijetanja'),
         vrijemeSlijetanja: podaci.get('vrijemeSlijetanja'),
-        preletKm: podaci.get('preletKm'),
+        preletKm: podaci.get('preletKm') || null,
         pilot: parseInt(pilotSifra),
         zrakoplov: parseInt(zrakoplovSifra)
       });
